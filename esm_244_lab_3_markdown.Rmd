@@ -1,0 +1,30 @@
+---
+title: "Lab 3"
+author: "An Bui"
+date: "1/24/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+#### O. Attach packages.
+```{r packages, include = FALSE}
+library(tidyverse)
+library(boot)
+library(naniar)
+library(simputation)
+```
+
+#### 1. Bootstrapping penguin flipper lengths
+```{r data, include = FALSE}
+penguins <- read_csv("penguins.csv")
+```
+
+
+
+
+
+
