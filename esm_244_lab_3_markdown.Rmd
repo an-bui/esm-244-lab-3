@@ -120,9 +120,40 @@ airqual_facets
 
 #### create shadow matrix ####
 # dataframe that contains info about whether or not a value is NA that you can use to visualize those observations
+na_shadow <- bind_shadow(airquality)
+# creates a copy of original data frame next to new data frame describing whether or not an outcome was NA
 
+#### use imputation by linear regression to fill in NA ####
+airquality %>% 
+  # impute Ozone values as a function of Temperature and Wind
+  impute_lm(Ozone ~ Temp + Wind) %>% 
+  ggplot(aes(x = Temp, y = Ozone)) +
+  geom_point()
+# anywhere there was an NA for Ozone, it was calculated based on existing observations and plotted as though it was a real observation
 
+#### use shadow matrix to show which values are imputed ####
+na_shadow %>% 
+  impute_lm(Ozone ~ Temp + Wind) %>% 
+  # color should depend on value from shadow matrix
+  ggplot(aes(x = Temp, y = Ozone, color = Ozone_NA)) +
+  geom_point()
+# teal points are imputed
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
